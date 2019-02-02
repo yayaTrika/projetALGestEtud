@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Model\Niveau;
 use Illuminate\Http\Request;
+use App\Http\Resources\Niveau\NiveauCollection;
+use App\Http\Resources\Niveau\NiveauResource;
 
 class NiveauController extends Controller
 {
@@ -14,7 +16,7 @@ class NiveauController extends Controller
      */
     public function index()
     {
-        //
+        return NiveauCollection::collection(Niveau::paginate(20));
     }
 
     /**
@@ -35,7 +37,7 @@ class NiveauController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -46,7 +48,7 @@ class NiveauController extends Controller
      */
     public function show(Niveau $niveau)
     {
-        //
+        return new NiveauResource($niveau);
     }
 
     /**

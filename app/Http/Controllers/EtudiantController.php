@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Model\Etudiant;
 use Illuminate\Http\Request;
+use App\Http\Resources\Etudiant\EtudiantCollection;
+use App\Http\Resources\Etudiant\EtudiantResource;
 
 class EtudiantController extends Controller
 {
@@ -14,7 +16,7 @@ class EtudiantController extends Controller
      */
     public function index()
     {
-        //
+        return EtudiantCollection::collection(Etudiant::paginate(20)); 
     }
 
     /**
@@ -46,7 +48,7 @@ class EtudiantController extends Controller
      */
     public function show(Etudiant $etudiant)
     {
-        //
+        return new EtudiantResource($etudiant);
     }
 
     /**
