@@ -15,6 +15,15 @@ class CreateEtudiantsTable extends Migration
     {
         Schema::create('etudiants', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('matricule');
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('tel');
+            $table->string('email');
+
+            $table->integer('idDateNaiss')->unsigned()->index();
+            $table->foreign('idDateNaiss')->references('id')->on('date_naissances')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
