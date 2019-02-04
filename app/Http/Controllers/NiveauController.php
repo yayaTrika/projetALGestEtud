@@ -6,6 +6,7 @@ use App\Model\Niveau;
 use Illuminate\Http\Request;
 use App\Http\Resources\Niveau\NiveauCollection;
 use App\Http\Resources\Niveau\NiveauResource;
+use Symfony\Component\HttpFoundation\Response;
 
 class NiveauController extends Controller
 {
@@ -17,6 +18,7 @@ class NiveauController extends Controller
     public function index()
     {
         return NiveauCollection::collection(Niveau::paginate(20));
+        // return EtudiantCollection::collection(Etudiant::paginate(20)); 
     }
 
     /**
@@ -37,7 +39,15 @@ class NiveauController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $niveau = new Niveau();
+        $niveau->codeNiveau = $request->code;
+        $niveau->libelleNiveau = $request->libelle;
+
+        $niveau->save();
+
+        return response([
+            'data' => new NiveauResource($niveau)
+        ],Response::HTTP_CREATED);
     }
 
     /**
@@ -71,7 +81,18 @@ class NiveauController extends Controller
      */
     public function update(Request $request, Niveau $niveau)
     {
-        //
+        // dd($request);
+        $request['codeNiveau'] = $request->code;
+        $request['libelleNiveau'] = $request->libelle;
+        unset($request['code']);
+        unset($request['libelle']);
+        
+        return $niveau;
+        $niveau->update($request->all());
+
+        return response([
+            'data' => new NiveauResource($niveau)
+        ],Response::HTTP_CREATED);
     }
 
     /**
@@ -82,6 +103,6 @@ class NiveauController extends Controller
      */
     public function destroy(Niveau $niveau)
     {
-        //
+        
     }
 }
