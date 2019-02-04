@@ -8,7 +8,7 @@ use App\Model\DateNaissance;
 class Etudiant extends Model
 {
     protected $fillable = [
-    	'id','matricule','nom','prenom','tel','email','idDateNaiss'
+    	'id','matricule','nom','prenom','tel','email','idDateNaiss' 
     ];
 
     public function etudiant()
