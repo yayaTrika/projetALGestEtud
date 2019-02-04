@@ -70,21 +70,7 @@ class EtudiantController extends Controller
      */
     public function show(Etudiant $etudiant)
     {
-         return $etudiant; 
-        $article = DB::table('etudiants')
-            // ->join('categories', 'categories.id', '=', 'articles.category_id')
-            // ->join('article_prices', 'article_prices.article_id', '=', 'articles.id')
-            // ->join('prices', 'prices.id', '=', 'article_prices.price_id')
-            ->where('etudiants.id', 5)
-            // ->where('article_prices.current', 1)
-            // ->select('articles.id','articles.codeArticle','articles.nameArticle', 'articles.category_id',
-            // 'articles.nameMovie','articles.content', 'categories.nameCategory', 'prices.price')
-            // ->select('articles.*', 'categories.nameCategory','prices.price')
-            ->get();
-
-        return $article;
-
-        // return new EtudiantResource($etudiant);
+        return new EtudiantResource($etudiant);
     }
 
     /**

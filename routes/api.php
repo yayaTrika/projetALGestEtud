@@ -26,6 +26,6 @@ Route::group(['middleware' => 'auth:api'], function(){
 	Route::post('/details', 'API\UserController@details')->name('User detail');
 });
 
-Route::apiResource('/students','EtudiantController');
-Route::apiResource('/levels','NiveauController');
+Route::apiResource('etudiants','EtudiantController');
+Route::apiResource('niveaux','NiveauController');
  
