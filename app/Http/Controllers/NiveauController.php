@@ -23,19 +23,9 @@ class NiveauController extends Controller
     public function index()
     {
         return NiveauCollection::collection(Niveau::paginate(20));
-        // return EtudiantCollection::collection(Etudiant::paginate(20)); 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -66,16 +56,7 @@ class NiveauController extends Controller
         return new NiveauResource($niveau);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\Niveau  $niveau
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Niveau $niveau)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -92,7 +73,6 @@ class NiveauController extends Controller
         unset($request['code']);
         unset($request['libelle']);
         
-        return $niveau;
         $niveau->update($request->all());
 
         return response([
@@ -108,6 +88,6 @@ class NiveauController extends Controller
      */
     public function destroy(Niveau $niveau)
     {
-        
+        // On ne supprime jamais dans une base de donnée        
     }
 }

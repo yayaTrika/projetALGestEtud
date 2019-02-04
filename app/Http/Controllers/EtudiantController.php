@@ -27,15 +27,7 @@ class EtudiantController extends Controller
         return EtudiantCollection::collection(Etudiant::paginate(20)); 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -73,16 +65,7 @@ class EtudiantController extends Controller
         return new EtudiantResource($etudiant);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\Etudiant  $etudiant
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Etudiant $etudiant)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -95,7 +78,9 @@ class EtudiantController extends Controller
     {
         try{
             DB::beginTransaction();
-            $saveImage = false;
+
+            return $etudiant;
+            $saveImage = false; 
 
             // $image = $request->nameMovie;
             // $requestImage_path = public_path(). '/images/etudiants/' .$image;
@@ -132,7 +117,7 @@ class EtudiantController extends Controller
             DB::commit();
 
             return response([
-                'data' => new EtudiantResource($article)
+                'data' => new EtudiantResource($etudiant)
             ],Response::HTTP_CREATED);
         }
         catch(Exception $e){
@@ -149,6 +134,6 @@ class EtudiantController extends Controller
      */
     public function destroy(Etudiant $etudiant)
     {
-        //
+        // On ne supprime jamais dans une base de donnée
     }
 }
