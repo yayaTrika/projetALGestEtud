@@ -17,6 +17,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('login', 'API\UserController@login');
+Route::post('register', 'API\UserController@register');
+Route::put('users/{user}', 'API\UserController@updateUser');
+Route::get('/users', 'API\UserController@users')->name('List user'); //list users
+Route::post('/users', 'API\UserController@details')->name('Detail user'); //avec id
+Route::group(['middleware' => 'auth:api'], function(){
+	Route::post('/details', 'API\UserController@details')->name('User detail');
+});
+
 Route::apiResource('/students','EtudiantController');
 Route::apiResource('/levels','NiveauController');
  
