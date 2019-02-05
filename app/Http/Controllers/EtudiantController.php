@@ -79,7 +79,6 @@ class EtudiantController extends Controller
         try{
             DB::beginTransaction();
 
-            return $etudiant;
             $saveImage = false; 
 
             // $image = $request->nameMovie;
